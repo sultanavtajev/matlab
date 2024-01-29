@@ -1,0 +1,195 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Oppgave 1</title><meta name="generator" content="MATLAB 9.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-04-21"><meta name="DC.source" content="Oppg1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Oppgave 1</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Parametre</a></li><li><a href="#2">(1.a) Beregn h&oslash;yden til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt</a></li><li><a href="#3">(1.b) Farten til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt</a></li><li><a href="#4">(1.c) Beregn farten til ballen rett f&oslash;r den treffer bakken</a></li><li><a href="#5">(1.d) Beregn tiden det tar for ballen &aring; treffe bakken</a></li><li><a href="#6">(1.e) Beregn horisontal avstand n&aring;r ballen treffer bakken</a></li><li><a href="#7">(1.g) Beregn vinkelen T</a></li><li><a href="#8">Skriv ut resultatet</a></li></ul></div><h2 id="1">Parametre</h2><pre class="codeinput">v0 = 20.0; <span class="comment">% Startfart i m/s</span>
+theta_deg = 37; <span class="comment">% Vinkel i grader</span>
+g = 9.81; <span class="comment">% Tyngdeakselerasjon i m/s^2</span>
+v0g = 1000; <span class="comment">% Utskytingsfart (m/s)</span>
+s = 65000; <span class="comment">% M&aring;lavstand (m)</span>
+</pre><h2 id="2">(1.a) Beregn h&oslash;yden til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt</h2><pre class="codeinput"><span class="comment">% Konverter vinkel til radianer</span>
+theta_rad = deg2rad(theta_deg);
+
+<span class="comment">% Beregn den vertikale komponenten av startfarten</span>
+v0y = v0 * sin(theta_rad);
+
+<span class="comment">% Beregn den horisontale komponenten av startfarten</span>
+v0x = v0 * cos(theta_rad);
+
+<span class="comment">% Tiden det tar n&aring;r ballen er p&aring; sitt h&oslash;yeste punkt</span>
+t = v0y / g;
+
+<span class="comment">% H&oslash;yden til ballen n&aring;r den er p&aring; sitt h&oslash;yeste</span>
+h = v0y * t - 0.5 * g * t^2;
+</pre><h2 id="3">(1.b) Farten til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt</h2><p>Vertikal hastighet er 0, s&aring; vi bruker bare den horisontale hastigheten</p><pre class="codeinput">vtop = v0x;
+</pre><h2 id="4">(1.c) Beregn farten til ballen rett f&oslash;r den treffer bakken</h2><pre class="codeinput">v_impact = sqrt(v0x^2 + v0y^2);
+</pre><h2 id="5">(1.d) Beregn tiden det tar for ballen &aring; treffe bakken</h2><pre class="codeinput">a = -0.5 * g;
+b = v0y;
+c = 0;
+
+t1 = (-b + sqrt(b^2 - 4 * a * c)) / (2 * a);
+t2 = (-b - sqrt(b^2 - 4 * a * c)) / (2 * a);
+
+<span class="comment">% Velg den positive roten som tiden det tar for ballen &aring; treffe bakken</span>
+t_impact = max(t1, t2);
+</pre><h2 id="6">(1.e) Beregn horisontal avstand n&aring;r ballen treffer bakken</h2><pre class="codeinput">x = v0x * t_impact;
+</pre><h2 id="7">(1.g) Beregn vinkelen T</h2><pre class="codeinput">T = find_angle(v0g, s);
+</pre><h2 id="8">Skriv ut resultatet</h2><pre class="codeinput">fprintf(<span class="string">'(1.a) H&oslash;yden til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt er %.2f m. Se vedlagt kode og dokument for utregning.\n'</span>, h);
+fprintf(<span class="string">'(1.b) Farten til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt er %.2f m/s. Se vedlagt kode for utregning.\n'</span>, vtop);
+fprintf(<span class="string">'(1.c) Farten til ballen rett f&oslash;r den treffer bakken er %.2f m/s. Se vedlagt kode for utregning.\n'</span>, v_impact);
+fprintf(<span class="string">'(1.d) Tiden det tar f&oslash;r ballen treffer bakken er %.2f s. Se vedlagt kode for utregning.\n'</span>, t_impact);
+fprintf(<span class="string">'(1.e) Avstanden ballen har tilbakelagt i det den treffer bakken er %.2f m. Se vedlagt kode for utregning.\n'</span>, x);
+fprintf(<span class="string">'(1.f) Se vedlagt dokument for utregning.\n'</span>);
+fprintf(<span class="string">'(1.g) For &aring; treffe et m&aring;l %.0f m unna med en utskytingsfart p&aring; %.2f m/s, m&aring; vinkelen T v&aelig;re %.2f&deg;.\n'</span>, s, v0, T);
+fprintf(<span class="string">'(1.h) Den vinkelen som gir st&oslash;rst horisontal avstand (s) for en gitt utskytingsfart (v0) er 45&deg; (eller &#960;/4 radianer. Se vedlagt dokument for utregning.\n'</span>);
+
+<span class="comment">% Funksjon for &aring; beregne vinkelen T gitt utskytingsfart (v0) og m&aring;lavstand (s)</span>
+<span class="keyword">function</span> T = find_angle(v0, s)
+    g = 9.81; <span class="comment">% Tyngdeakselerasjon (m/s^2)</span>
+    T_rad = 0.5 * asin((s * g) / (v0^2)); <span class="comment">% Beregn vinkelen T i radianer</span>
+    T = T_rad * (180 / pi); <span class="comment">% Konverter vinkelen T til grader</span>
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">(1.a) H&oslash;yden til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt er 7.38 m. Se vedlagt kode og dokument for utregning.
+(1.b) Farten til ballen n&aring;r den er p&aring; sitt h&oslash;yeste punkt er 15.97 m/s. Se vedlagt kode for utregning.
+(1.c) Farten til ballen rett f&oslash;r den treffer bakken er 20.00 m/s. Se vedlagt kode for utregning.
+(1.d) Tiden det tar f&oslash;r ballen treffer bakken er 2.45 s. Se vedlagt kode for utregning.
+(1.e) Avstanden ballen har tilbakelagt i det den treffer bakken er 39.20 m. Se vedlagt kode for utregning.
+(1.f) Se vedlagt dokument for utregning.
+(1.g) For &aring; treffe et m&aring;l 65000 m unna med en utskytingsfart p&aring; 20.00 m/s, m&aring; vinkelen T v&aelig;re 19.81&deg;.
+(1.h) Den vinkelen som gir st&oslash;rst horisontal avstand (s) for en gitt utskytingsfart (v0) er 45&deg; (eller &#960;/4 radianer. Se vedlagt dokument for utregning.
+</pre><p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Oppgave 1
+
+%% Parametre
+v0 = 20.0; % Startfart i m/s
+theta_deg = 37; % Vinkel i grader
+g = 9.81; % Tyngdeakselerasjon i m/s^2
+v0g = 1000; % Utskytingsfart (m/s)
+s = 65000; % Målavstand (m)
+
+%% (1.a) Beregn høyden til ballen når den er på sitt høyeste punkt
+
+% Konverter vinkel til radianer
+theta_rad = deg2rad(theta_deg);
+
+% Beregn den vertikale komponenten av startfarten
+v0y = v0 * sin(theta_rad);
+
+% Beregn den horisontale komponenten av startfarten
+v0x = v0 * cos(theta_rad);
+
+% Tiden det tar når ballen er på sitt høyeste punkt
+t = v0y / g;
+
+% Høyden til ballen når den er på sitt høyeste
+h = v0y * t - 0.5 * g * t^2;
+
+%% (1.b) Farten til ballen når den er på sitt høyeste punkt
+% Vertikal hastighet er 0, så vi bruker bare den horisontale hastigheten
+vtop = v0x;
+
+%% (1.c) Beregn farten til ballen rett før den treffer bakken
+v_impact = sqrt(v0x^2 + v0y^2);
+
+%% (1.d) Beregn tiden det tar for ballen å treffe bakken
+a = -0.5 * g;
+b = v0y;
+c = 0;
+
+t1 = (-b + sqrt(b^2 - 4 * a * c)) / (2 * a);
+t2 = (-b - sqrt(b^2 - 4 * a * c)) / (2 * a);
+
+% Velg den positive roten som tiden det tar for ballen å treffe bakken
+t_impact = max(t1, t2);
+
+%% (1.e) Beregn horisontal avstand når ballen treffer bakken
+x = v0x * t_impact;
+
+
+%% (1.g) Beregn vinkelen T
+T = find_angle(v0g, s);
+
+%% Skriv ut resultatet
+fprintf('(1.a) Høyden til ballen når den er på sitt høyeste punkt er %.2f m. Se vedlagt kode og dokument for utregning.\n', h);
+fprintf('(1.b) Farten til ballen når den er på sitt høyeste punkt er %.2f m/s. Se vedlagt kode for utregning.\n', vtop);
+fprintf('(1.c) Farten til ballen rett før den treffer bakken er %.2f m/s. Se vedlagt kode for utregning.\n', v_impact);
+fprintf('(1.d) Tiden det tar før ballen treffer bakken er %.2f s. Se vedlagt kode for utregning.\n', t_impact);
+fprintf('(1.e) Avstanden ballen har tilbakelagt i det den treffer bakken er %.2f m. Se vedlagt kode for utregning.\n', x);
+fprintf('(1.f) Se vedlagt dokument for utregning.\n');
+fprintf('(1.g) For å treffe et mål %.0f m unna med en utskytingsfart på %.2f m/s, må vinkelen T være %.2f°.\n', s, v0, T);
+fprintf('(1.h) Den vinkelen som gir størst horisontal avstand (s) for en gitt utskytingsfart (v0) er 45° (eller π/4 radianer. Se vedlagt dokument for utregning.\n');
+
+% Funksjon for å beregne vinkelen T gitt utskytingsfart (v0) og målavstand (s)
+function T = find_angle(v0, s)
+    g = 9.81; % Tyngdeakselerasjon (m/s^2)
+    T_rad = 0.5 * asin((s * g) / (v0^2)); % Beregn vinkelen T i radianer
+    T = T_rad * (180 / pi); % Konverter vinkelen T til grader
+end
+##### SOURCE END #####
+--></body></html>

@@ -1,0 +1,459 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Oppg3</title><meta name="generator" content="MATLAB 9.14"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2023-04-21"><meta name="DC.source" content="Oppg3.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; }
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+span.typesection { color:#A0522D }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Parametre</a></li><li><a href="#2">(3.b) Beregning av vinkelfrekvens og periode</a></li><li><a href="#3">(3.c og d) Analytisk beregning av klossens posisjon og fart som funksjon av tid</a></li><li><a href="#4">(3.e) Beregning av fj&aelig;ras potensielle, kinetiske og totale energi</a></li><li><a href="#5">(3.f) Beregning av tiln&aelig;rmet verdi for posisjonen og fart ved bruk av Eulers midtpunktsmetode</a></li><li><a href="#6">(3.g) L&oslash;sning av bevegelseslikningen ved hjelp av ode45-funksjonen</a></li><li><a href="#7">(3.j) L&oslash;sning av bevegelseslikningen med demping b=2.8kg ved hjelp av ode45-funksjonen</a></li><li><a href="#8">(3.k) L&oslash;sning av bevegelseslikningen med demping b=110kg ved hjelp av ode45-funksjonen</a></li><li><a href="#9">Utskrift av resultater</a></li><li><a href="#10">Analytisk plot av klossens posisjon som funksjon av tiden</a></li><li><a href="#11">Analytisk plot av klossens fart som funksjon av tiden</a></li><li><a href="#12">Numerisk plot av klossens posisjon som funksjon av tiden</a></li><li><a href="#13">Numerisk plot av klossens fart som funksjon av tiden</a></li><li><a href="#14">Numerisk plot av klossens posisjon med demping b=2.8kg/s som funksjon av tiden</a></li><li><a href="#15">Numerisk plot av klossens fart med demping b=2.8kg/s som funksjon av tiden</a></li><li><a href="#16">Numerisk plot av klossens posisjon med demping b=110kg/s som funksjon av tiden</a></li><li><a href="#17">Numerisk plot av klossens fart med demping b=110kg/s som funksjon av tiden</a></li><li><a href="#18">Sammenligning numerisk klossens posisjon med demping b=2.8kg/s og b=110kg/s som funksjoner av tiden</a></li><li><a href="#19">Sammenligning klossens posisjon som funksjon av tiden for den analytiske og numeriske l&oslash;sningen</a></li><li><a href="#20">Plot av potensiell energi, kinetisk energi og total energi</a></li></ul></div><h2 id="1">Parametre</h2><pre class="codeinput">m = 2.0; <span class="comment">% Masse i kg</span>
+k = 350; <span class="comment">% Fj&aelig;rkonstant i N/m</span>
+b = 2.8; <span class="comment">% Dempingskonstant i kg/s</span>
+b2 = 110; <span class="comment">% Dempingskonstant i kg/s</span>
+x0 = 0.070; <span class="comment">% Forskyvning fra likevektsposisjonen i meter</span>
+v0 = 0; <span class="comment">% Startfart i m/s</span>
+
+t_start = 0; <span class="comment">% Starttid i sekunder</span>
+t_end = 5; <span class="comment">% Slutttid i sekunder</span>
+t_end_a = 0.3; <span class="comment">%</span>
+t_step = 0.001; <span class="comment">% Tidssteg i sekunder</span>
+dt = 0.05; <span class="comment">% Tidssteg i sekunder for Euler's midtpunktsmetode</span>
+
+<span class="comment">% Tidsvektor for analytisk l&oslash;sning</span>
+t_analytisk = t_start:t_step:t_end;
+
+<span class="comment">% Tidsvektor for numerisk l&oslash;sning</span>
+t_numerisk = [t_start t_end];
+</pre><h2 id="2">(3.b) Beregning av vinkelfrekvens og periode</h2><pre class="codeinput">w = sqrt(k/m); <span class="comment">% Vinkelfrekvens</span>
+T = 2*pi/w; <span class="comment">% Periode</span>
+</pre><h2 id="3">(3.c og d) Analytisk beregning av klossens posisjon og fart som funksjon av tid</h2><pre class="codeinput">x_analytisk = x0*cos(w*t_analytisk); <span class="comment">% Posisjon som funksjon av tid</span>
+v_analytisk = -x0*w*sin(w*t_analytisk); <span class="comment">% Fart som funksjon av tid</span>
+</pre><h2 id="4">(3.e) Beregning av fj&aelig;ras potensielle, kinetiske og totale energi</h2><pre class="codeinput">Ep = 0.5*k*x_analytisk.^2; <span class="comment">% Fj&aelig;ras potensielle energi som funksjon av tid</span>
+Ek = 0.5*m*v_analytisk.^2; <span class="comment">% Klossens kinetiske energi som funksjon av tid</span>
+E = Ep + Ek; <span class="comment">% Total energi som funksjon av tid</span>
+
+<span class="comment">% Beregning av total energi</span>
+E_total = E(1); <span class="comment">% Total energi er konstant, bruk f&oslash;rste verdi</span>
+</pre><h2 id="5">(3.f) Beregning av tiln&aelig;rmet verdi for posisjonen og fart ved bruk av Eulers midtpunktsmetode</h2><p>Initialisering av x og y ved t = 0</p><pre class="codeinput">x_numerisk(1) = x0;
+v_numerisk(1) = v0;
+
+<span class="comment">% Beregning av x og v ved t = dt ved hjelp av Eulers midtpunktsmetode</span>
+v_half = v_numerisk(1) - 0.5*k/m * x_numerisk(1)*dt;
+x_numerisk(2) = x_numerisk(1) + v_half*dt;
+v_numerisk(2) = v_half - 0.5*k/m * x_numerisk(2)*dt;
+
+<span class="comment">% Beregning av tiln&aelig;rmet verdi for posisjonen x og fart v ved t = 0.05 s</span>
+x_numerisk_approx = x_numerisk(2);
+v_numerisk_approx = v_numerisk(2);
+</pre><h2 id="6">(3.g) L&oslash;sning av bevegelseslikningen ved hjelp av ode45-funksjonen</h2><p>Bevegelsesligningen</p><pre class="codeinput">dxdt = @(t, x) [x(2); -k/m*x(1)];
+
+<span class="comment">% Totalt tidsintervall</span>
+t_span = [t_start, t_end];
+
+<span class="comment">% Startverdier for x og v</span>
+x0v0 = [x0; v0];
+
+<span class="comment">% L&oslash;sning av bevegelsesligningen ved hjelp av ode45-funksjonen</span>
+[t_numerisk_ode, x_numerisk_ode] = ode45(dxdt, t_span, x0v0);
+
+<span class="comment">% Beregning av klossens posisjon og fart som funksjon av tid</span>
+x_numerisk_ode = x_numerisk_ode(:, 1);
+
+<span class="comment">% Beregning av klossens fart som funksjon av tid ved numerisk l&oslash;sning</span>
+v_numerisk_ode = diff(x_numerisk_ode)./diff(t_numerisk_ode);
+v_numerisk_ode = [v_numerisk_ode(1); v_numerisk_ode];
+</pre><h2 id="7">(3.j) L&oslash;sning av bevegelseslikningen med demping b=2.8kg ved hjelp av ode45-funksjonen</h2><p>Bevegelsesligningen</p><pre class="codeinput">dxdt2 = @(t, x) [x(2); -k/m*x(1) - b/m*x(2)];
+
+<span class="comment">% L&oslash;sning av bevegelsesligningen ved hjelp av ode45-funksjonen</span>
+[t_numerisk_ode2, x_numerisk_ode2] = ode45(dxdt2, t_span, x0v0);
+
+<span class="comment">% Beregning av klossens posisjon og fart som funksjon av tid</span>
+x_numerisk_ode2 = x_numerisk_ode2(:, 1);
+
+<span class="comment">% Beregning av klossens fart som funksjon av tid ved numerisk l&oslash;sning</span>
+v_numerisk_ode2 = diff(x_numerisk_ode2)./diff(t_numerisk_ode2);
+v_numerisk_ode2 = [v_numerisk_ode2(1); v_numerisk_ode2];
+</pre><h2 id="8">(3.k) L&oslash;sning av bevegelseslikningen med demping b=110kg ved hjelp av ode45-funksjonen</h2><p>Bevegelsesligningen</p><pre class="codeinput">dxdt3 = @(t, x) [x(2); -k/m*x(1) - b2/m*x(2)];
+
+<span class="comment">% L&oslash;sning av bevegelsesligningen ved hjelp av ode45-funksjonen</span>
+[t_numerisk_ode3, x_numerisk_ode3] = ode45(dxdt3, t_span, x0v0);
+
+<span class="comment">% Beregning av klossens posisjon og fart som funksjon av tid</span>
+x_numerisk_ode3 = x_numerisk_ode3(:, 1);
+
+<span class="comment">% Beregning av klossens fart som funksjon av tid ved numerisk l&oslash;sning</span>
+v_numerisk_ode3 = diff(x_numerisk_ode3)./diff(t_numerisk_ode3);
+v_numerisk_ode3 = [v_numerisk_ode3(1); v_numerisk_ode3];
+</pre><h2 id="9">Utskrift av resultater</h2><pre class="codeinput">fprintf(<span class="string">'(3.a) Se vedlagt dokument for utregning.\n'</span>);
+fprintf(<span class="string">'(3.b) Vinkelfrekvens: %.2f rad/s og Periode: %.2f s. Se vedlagt kode for utregning.\n'</span>, w, T);
+fprintf(<span class="string">'(3.c) Analytisk l&oslash;sning. Klossens posisjon ved tiden t = 0.3 er s: %.3f m. Se vedlagt kode for utregning.\n'</span>, x_analytisk(t_analytisk==0.3));
+fprintf(<span class="string">'(3.d) Klossens fart ved tiden t = 0.3 er v: %.3f m/s. Se vedlagt kode for utregning.\n'</span>, v_analytisk(t_analytisk==0.3));
+fprintf(<span class="string">'(3.e) Total energi E: %.2f J. Se vedlagt kode for utregning.\n'</span>, E_total);
+fprintf(<span class="string">'(3.f) Numerisk l&oslash;sning. Tiln&aelig;rmet verdi for posisjonen x ved t = 0.05 s: %.3f m. Se vedlagt kode og dokument for utregning.\n'</span>, x_numerisk_approx);
+fprintf(<span class="string">'(3.g) Numerisk l&oslash;sning. Se graf-vinduer. Energien er bevart for dette systemet. Se vedlagt kode og dokument for utregning.\n'</span>);
+fprintf(<span class="string">'(3.h) Se graf-vinduer. Ja, det er samsvar mellom den analytiske og numeriske l&oslash;sningen for x. Se vedlagt kode og dokument for utregning.\n'</span>);
+fprintf(<span class="string">'(3.i) Se vedlagt dokument for utregning.\n'</span>);
+fprintf(<span class="string">'(3.j) Se vedlagte graf-vinduer, kode og dokument.\n'</span>);
+fprintf(<span class="string">'(3.k) Se vedlagte graf-vinduer, kode og dokument.\n'</span>);
+</pre><pre class="codeoutput">(3.a) Se vedlagt dokument for utregning.
+(3.b) Vinkelfrekvens: 13.23 rad/s og Periode: 0.47 s. Se vedlagt kode for utregning.
+(3.c) Analytisk l&oslash;sning. Klossens posisjon ved tiden t = 0.3 er s: -0.047 m. Se vedlagt kode for utregning.
+(3.d) Klossens fart ved tiden t = 0.3 er v: 0.681 m/s. Se vedlagt kode for utregning.
+(3.e) Total energi E: 0.86 J. Se vedlagt kode for utregning.
+(3.f) Numerisk l&oslash;sning. Tiln&aelig;rmet verdi for posisjonen x ved t = 0.05 s: 0.055 m. Se vedlagt kode og dokument for utregning.
+(3.g) Numerisk l&oslash;sning. Se graf-vinduer. Energien er bevart for dette systemet. Se vedlagt kode og dokument for utregning.
+(3.h) Se graf-vinduer. Ja, det er samsvar mellom den analytiske og numeriske l&oslash;sningen for x. Se vedlagt kode og dokument for utregning.
+(3.i) Se vedlagt dokument for utregning.
+(3.j) Se vedlagte graf-vinduer, kode og dokument.
+(3.k) Se vedlagte graf-vinduer, kode og dokument.
+</pre><h2 id="10">Analytisk plot av klossens posisjon som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,1);</span>
+plot(t_analytisk, x_analytisk);
+legend(<span class="string">'Posisjon'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Posisjon (m)'</span>);
+title(<span class="string">'(3.c) Analytisk plot av klossens posisjon som funksjon av tid'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_01.png" alt=""> <h2 id="11">Analytisk plot av klossens fart som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,2);</span>
+plot(t_analytisk, v_analytisk);
+legend(<span class="string">'Fart m/s'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Fart (m/s)'</span>);
+title(<span class="string">'(3.d) Analytisk plot av klossens fart som funksjon av tid'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_02.png" alt=""> <img vspace="5" hspace="5" src="Oppg3_03.png" alt=""> <h2 id="12">Numerisk plot av klossens posisjon som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,3);</span>
+plot(t_numerisk_ode, x_numerisk_ode);
+legend(<span class="string">'Posisjon'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Posisjon (m)'</span>);
+title(<span class="string">'(3.g) Numerisk plot av klossens posisjon som funksjon av tid'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_04.png" alt=""> <h2 id="13">Numerisk plot av klossens fart som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,4);</span>
+plot(t_numerisk_ode, v_numerisk_ode);
+legend(<span class="string">'Fart m/s'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Fart (m/s)'</span>);
+title(<span class="string">'(3.g) Numerisk plot av klossens fart som funksjon av tid'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_05.png" alt=""> <h2 id="14">Numerisk plot av klossens posisjon med demping b=2.8kg/s som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,5);</span>
+plot(t_numerisk_ode, x_numerisk_ode, t_numerisk_ode2, x_numerisk_ode2);
+legend(<span class="string">'b=0kg/s'</span>, <span class="string">'b=2.8kg/s'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Posisjon (m)'</span>);
+title(<span class="string">'(3.j) Numerisk plot av klossens posisjon som funksjon av tid med demping b=2.8kg/s'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_06.png" alt=""> <h2 id="15">Numerisk plot av klossens fart med demping b=2.8kg/s som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,6);</span>
+plot(t_numerisk_ode, v_numerisk_ode,t_numerisk_ode2, v_numerisk_ode2);
+legend(<span class="string">'b=0kg/s'</span>, <span class="string">'b=2.8kg/s'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Fart (m/s)'</span>);
+title(<span class="string">'(3.j) Numerisk plot av klossens fart som funksjon av tid med demping b=2.8kg/s'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_07.png" alt=""> <h2 id="16">Numerisk plot av klossens posisjon med demping b=110kg/s som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,7);</span>
+plot(t_numerisk_ode, x_numerisk_ode, t_numerisk_ode3, x_numerisk_ode3);
+legend(<span class="string">'b=0kg/s'</span>, <span class="string">'b=110kg/s'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Posisjon (m)'</span>);
+title(<span class="string">'(3.k) Numerisk plot av klossens posisjon som funksjon av tid med demping b=110kg/s'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_08.png" alt=""> <h2 id="17">Numerisk plot av klossens fart med demping b=110kg/s som funksjon av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,8);</span>
+plot(t_numerisk_ode, v_numerisk_ode,t_numerisk_ode3, v_numerisk_ode3);
+legend(<span class="string">'b=0kg/s'</span>, <span class="string">'b=110kg/s'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Fart (m/s)'</span>);
+title(<span class="string">'(3.k) Numerisk plot av klossens fart som funksjon av tid med demping b=110kg/s'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_09.png" alt=""> <h2 id="18">Sammenligning numerisk klossens posisjon med demping b=2.8kg/s og b=110kg/s som funksjoner av tiden</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,9);</span>
+plot(t_numerisk_ode2, x_numerisk_ode2, t_numerisk_ode3, x_numerisk_ode3);
+legend(<span class="string">'b=2,8kg/s'</span>, <span class="string">'b=110kg/s'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Posisjon (m)'</span>);
+title(<span class="string">'(3.k) Sammenligning numerisk klossens posisjon med demping b=2.8kg/s og b=110kg/s som funksjoner av tid'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_10.png" alt=""> <h2 id="19">Sammenligning klossens posisjon som funksjon av tiden for den analytiske og numeriske l&oslash;sningen</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,10)</span>
+plot(t_analytisk, x_analytisk, t_numerisk_ode, x_numerisk_ode);
+legend(<span class="string">'Analytisk'</span>, <span class="string">'Numerisk'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Posisjon (m)'</span>);
+title(<span class="string">'(3.h) Sammenligning av analytisk og numerisk l&oslash;sning for posisjonen x'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_11.png" alt=""> <h2 id="20">Plot av potensiell energi, kinetisk energi og total energi</h2><pre class="codeinput">figure;
+<span class="comment">%subplot(11,1,11);</span>
+plot(t_analytisk, Ep, t_analytisk, Ek, t_analytisk, E);
+legend(<span class="string">'Fj&aelig;ras potensielle energi'</span>, <span class="string">'Klossens kinetiske energi'</span>, <span class="string">'Total energi'</span>);
+xlabel(<span class="string">'Tid (s)'</span>);
+ylabel(<span class="string">'Energi (J)'</span>);
+title(<span class="string">'(3.e) Potensiell, kinetisk og total energi'</span>);
+</pre><img vspace="5" hspace="5" src="Oppg3_12.png" alt=""> <p class="footer"><br><a href="https://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2023a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Parametre
+m = 2.0; % Masse i kg
+k = 350; % Fjærkonstant i N/m
+b = 2.8; % Dempingskonstant i kg/s
+b2 = 110; % Dempingskonstant i kg/s
+x0 = 0.070; % Forskyvning fra likevektsposisjonen i meter
+v0 = 0; % Startfart i m/s
+
+t_start = 0; % Starttid i sekunder
+t_end = 5; % Slutttid i sekunder
+t_end_a = 0.3; %
+t_step = 0.001; % Tidssteg i sekunder
+dt = 0.05; % Tidssteg i sekunder for Euler's midtpunktsmetode
+
+% Tidsvektor for analytisk løsning
+t_analytisk = t_start:t_step:t_end;
+
+% Tidsvektor for numerisk løsning
+t_numerisk = [t_start t_end];
+
+%% (3.b) Beregning av vinkelfrekvens og periode
+w = sqrt(k/m); % Vinkelfrekvens
+T = 2*pi/w; % Periode
+
+%% (3.c og d) Analytisk beregning av klossens posisjon og fart som funksjon av tid
+x_analytisk = x0*cos(w*t_analytisk); % Posisjon som funksjon av tid
+v_analytisk = -x0*w*sin(w*t_analytisk); % Fart som funksjon av tid
+
+%% (3.e) Beregning av fjæras potensielle, kinetiske og totale energi
+Ep = 0.5*k*x_analytisk.^2; % Fjæras potensielle energi som funksjon av tid
+Ek = 0.5*m*v_analytisk.^2; % Klossens kinetiske energi som funksjon av tid
+E = Ep + Ek; % Total energi som funksjon av tid
+
+% Beregning av total energi
+E_total = E(1); % Total energi er konstant, bruk første verdi
+
+%% (3.f) Beregning av tilnærmet verdi for posisjonen og fart ved bruk av Eulers midtpunktsmetode
+% Initialisering av x og y ved t = 0
+x_numerisk(1) = x0;
+v_numerisk(1) = v0;
+
+% Beregning av x og v ved t = dt ved hjelp av Eulers midtpunktsmetode
+v_half = v_numerisk(1) - 0.5*k/m * x_numerisk(1)*dt;
+x_numerisk(2) = x_numerisk(1) + v_half*dt;
+v_numerisk(2) = v_half - 0.5*k/m * x_numerisk(2)*dt;
+
+% Beregning av tilnærmet verdi for posisjonen x og fart v ved t = 0.05 s
+x_numerisk_approx = x_numerisk(2);
+v_numerisk_approx = v_numerisk(2);
+
+%% (3.g) Løsning av bevegelseslikningen ved hjelp av ode45-funksjonen
+% Bevegelsesligningen
+dxdt = @(t, x) [x(2); -k/m*x(1)];
+
+% Totalt tidsintervall
+t_span = [t_start, t_end];
+
+% Startverdier for x og v
+x0v0 = [x0; v0];
+
+% Løsning av bevegelsesligningen ved hjelp av ode45-funksjonen
+[t_numerisk_ode, x_numerisk_ode] = ode45(dxdt, t_span, x0v0);
+
+% Beregning av klossens posisjon og fart som funksjon av tid
+x_numerisk_ode = x_numerisk_ode(:, 1);
+
+% Beregning av klossens fart som funksjon av tid ved numerisk løsning
+v_numerisk_ode = diff(x_numerisk_ode)./diff(t_numerisk_ode);
+v_numerisk_ode = [v_numerisk_ode(1); v_numerisk_ode];
+
+%% (3.j) Løsning av bevegelseslikningen med demping b=2.8kg ved hjelp av ode45-funksjonen
+% Bevegelsesligningen
+dxdt2 = @(t, x) [x(2); -k/m*x(1) - b/m*x(2)];
+
+% Løsning av bevegelsesligningen ved hjelp av ode45-funksjonen
+[t_numerisk_ode2, x_numerisk_ode2] = ode45(dxdt2, t_span, x0v0);
+
+% Beregning av klossens posisjon og fart som funksjon av tid
+x_numerisk_ode2 = x_numerisk_ode2(:, 1);
+
+% Beregning av klossens fart som funksjon av tid ved numerisk løsning
+v_numerisk_ode2 = diff(x_numerisk_ode2)./diff(t_numerisk_ode2);
+v_numerisk_ode2 = [v_numerisk_ode2(1); v_numerisk_ode2];
+
+%% (3.k) Løsning av bevegelseslikningen med demping b=110kg ved hjelp av ode45-funksjonen
+% Bevegelsesligningen
+dxdt3 = @(t, x) [x(2); -k/m*x(1) - b2/m*x(2)];
+
+% Løsning av bevegelsesligningen ved hjelp av ode45-funksjonen
+[t_numerisk_ode3, x_numerisk_ode3] = ode45(dxdt3, t_span, x0v0);
+
+% Beregning av klossens posisjon og fart som funksjon av tid
+x_numerisk_ode3 = x_numerisk_ode3(:, 1);
+
+% Beregning av klossens fart som funksjon av tid ved numerisk løsning
+v_numerisk_ode3 = diff(x_numerisk_ode3)./diff(t_numerisk_ode3);
+v_numerisk_ode3 = [v_numerisk_ode3(1); v_numerisk_ode3];
+
+%% Utskrift av resultater
+fprintf('(3.a) Se vedlagt dokument for utregning.\n');
+fprintf('(3.b) Vinkelfrekvens: %.2f rad/s og Periode: %.2f s. Se vedlagt kode for utregning.\n', w, T);
+fprintf('(3.c) Analytisk løsning. Klossens posisjon ved tiden t = 0.3 er s: %.3f m. Se vedlagt kode for utregning.\n', x_analytisk(t_analytisk==0.3));
+fprintf('(3.d) Klossens fart ved tiden t = 0.3 er v: %.3f m/s. Se vedlagt kode for utregning.\n', v_analytisk(t_analytisk==0.3));
+fprintf('(3.e) Total energi E: %.2f J. Se vedlagt kode for utregning.\n', E_total);
+fprintf('(3.f) Numerisk løsning. Tilnærmet verdi for posisjonen x ved t = 0.05 s: %.3f m. Se vedlagt kode og dokument for utregning.\n', x_numerisk_approx);
+fprintf('(3.g) Numerisk løsning. Se graf-vinduer. Energien er bevart for dette systemet. Se vedlagt kode og dokument for utregning.\n');
+fprintf('(3.h) Se graf-vinduer. Ja, det er samsvar mellom den analytiske og numeriske løsningen for x. Se vedlagt kode og dokument for utregning.\n');
+fprintf('(3.i) Se vedlagt dokument for utregning.\n');
+fprintf('(3.j) Se vedlagte graf-vinduer, kode og dokument.\n');
+fprintf('(3.k) Se vedlagte graf-vinduer, kode og dokument.\n');
+
+%% Analytisk plot av klossens posisjon som funksjon av tiden
+figure;
+%subplot(11,1,1);
+plot(t_analytisk, x_analytisk);
+legend('Posisjon');
+xlabel('Tid (s)');
+ylabel('Posisjon (m)');
+title('(3.c) Analytisk plot av klossens posisjon som funksjon av tid');
+
+%% Analytisk plot av klossens fart som funksjon av tiden
+figure;
+%subplot(11,1,2);
+plot(t_analytisk, v_analytisk);
+legend('Fart m/s');
+xlabel('Tid (s)');
+ylabel('Fart (m/s)');
+title('(3.d) Analytisk plot av klossens fart som funksjon av tid');
+
+%% Numerisk plot av klossens posisjon som funksjon av tiden
+figure;
+%subplot(11,1,3);
+plot(t_numerisk_ode, x_numerisk_ode);
+legend('Posisjon');
+xlabel('Tid (s)');
+ylabel('Posisjon (m)');
+title('(3.g) Numerisk plot av klossens posisjon som funksjon av tid');
+
+%% Numerisk plot av klossens fart som funksjon av tiden
+figure;
+%subplot(11,1,4);
+plot(t_numerisk_ode, v_numerisk_ode);
+legend('Fart m/s');
+xlabel('Tid (s)');
+ylabel('Fart (m/s)');
+title('(3.g) Numerisk plot av klossens fart som funksjon av tid');
+
+%% Numerisk plot av klossens posisjon med demping b=2.8kg/s som funksjon av tiden
+figure;
+%subplot(11,1,5);
+plot(t_numerisk_ode, x_numerisk_ode, t_numerisk_ode2, x_numerisk_ode2);
+legend('b=0kg/s', 'b=2.8kg/s');
+xlabel('Tid (s)');
+ylabel('Posisjon (m)');
+title('(3.j) Numerisk plot av klossens posisjon som funksjon av tid med demping b=2.8kg/s');
+
+%% Numerisk plot av klossens fart med demping b=2.8kg/s som funksjon av tiden
+figure;
+%subplot(11,1,6);
+plot(t_numerisk_ode, v_numerisk_ode,t_numerisk_ode2, v_numerisk_ode2);
+legend('b=0kg/s', 'b=2.8kg/s');
+xlabel('Tid (s)');
+ylabel('Fart (m/s)');
+title('(3.j) Numerisk plot av klossens fart som funksjon av tid med demping b=2.8kg/s');
+
+%% Numerisk plot av klossens posisjon med demping b=110kg/s som funksjon av tiden
+figure;
+%subplot(11,1,7);
+plot(t_numerisk_ode, x_numerisk_ode, t_numerisk_ode3, x_numerisk_ode3);
+legend('b=0kg/s', 'b=110kg/s');
+xlabel('Tid (s)');
+ylabel('Posisjon (m)');
+title('(3.k) Numerisk plot av klossens posisjon som funksjon av tid med demping b=110kg/s');
+
+%% Numerisk plot av klossens fart med demping b=110kg/s som funksjon av tiden
+figure;
+%subplot(11,1,8);
+plot(t_numerisk_ode, v_numerisk_ode,t_numerisk_ode3, v_numerisk_ode3);
+legend('b=0kg/s', 'b=110kg/s');
+xlabel('Tid (s)');
+ylabel('Fart (m/s)');
+title('(3.k) Numerisk plot av klossens fart som funksjon av tid med demping b=110kg/s');
+
+%% Sammenligning numerisk klossens posisjon med demping b=2.8kg/s og b=110kg/s som funksjoner av tiden
+figure;
+%subplot(11,1,9);
+plot(t_numerisk_ode2, x_numerisk_ode2, t_numerisk_ode3, x_numerisk_ode3);
+legend('b=2,8kg/s', 'b=110kg/s');
+xlabel('Tid (s)');
+ylabel('Posisjon (m)');
+title('(3.k) Sammenligning numerisk klossens posisjon med demping b=2.8kg/s og b=110kg/s som funksjoner av tid');
+
+%% Sammenligning klossens posisjon som funksjon av tiden for den analytiske og numeriske løsningen
+figure;
+%subplot(11,1,10)
+plot(t_analytisk, x_analytisk, t_numerisk_ode, x_numerisk_ode);
+legend('Analytisk', 'Numerisk');
+xlabel('Tid (s)');
+ylabel('Posisjon (m)');
+title('(3.h) Sammenligning av analytisk og numerisk løsning for posisjonen x');
+
+%% Plot av potensiell energi, kinetisk energi og total energi
+figure;
+%subplot(11,1,11);
+plot(t_analytisk, Ep, t_analytisk, Ek, t_analytisk, E);
+legend('Fjæras potensielle energi', 'Klossens kinetiske energi', 'Total energi');
+xlabel('Tid (s)');
+ylabel('Energi (J)');
+title('(3.e) Potensiell, kinetisk og total energi'); 
+##### SOURCE END #####
+--></body></html>
